@@ -79,4 +79,4 @@ jobs:
 
       - name: Force new ECS deployment
         run: |
-          aws ecs update-service --cluster YOUR_CLUSTER_NAME --service YOUR_SERVICE_NAME --force-new-deployment --region us-east-2
+          aws ecs update-service --cluster Unicorn --service unicorn_service --force-new-deployment --region us-east-2
