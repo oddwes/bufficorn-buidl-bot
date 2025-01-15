@@ -25,7 +25,7 @@ importers:
         version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
       '@elizaos/client-discord':
         specifier: 0.1.7
-        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(canvas@2.11.2)(ffmpeg-static@5.2.0)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)
+        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(ffmpeg-static@5.2.0)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)
       '@elizaos/client-telegram':
         specifier: 0.1.7
         version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(vue@3.5.13(typescript@5.6.3))
@@ -43,13 +43,13 @@ importers:
         version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
       '@elizaos/plugin-node':
         specifier: 0.1.7
-        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(canvas@2.11.2)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(zod@3.23.8)
+        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(zod@3.23.8)
       '@elizaos/plugin-solana':
         specifier: 0.1.7
-        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(form-data@4.0.1)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(rollup@4.29.2)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)(zod@3.23.8)
+        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(form-data@4.0.1)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(rollup@4.29.2)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)(zod@3.23.8)
       '@elizaos/plugin-starknet':
         specifier: 0.1.7
-        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))(postcss@8.4.49)(qs@6.13.1)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
+        version: 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(postcss@8.4.49)(qs@6.13.1)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
       '@tavily/core':
         specifier: 0.0.2
         version: 0.0.2
@@ -62,9 +62,15 @@ importers:
       fs:
         specifier: 0.0.1-security
         version: 0.0.1-security
+      jsdom:
+        specifier: ^26.0.0
+        version: 26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       net:
         specifier: 1.0.2
         version: 1.0.2
+      node-fetch:
+        specifier: ^3.3.2
+        version: 3.3.2
       path:
         specifier: 0.12.7
         version: 0.12.7
@@ -248,6 +254,9 @@ packages:
   '@anush008/tokenizers@0.0.0':
     resolution: {integrity: sha512-IQD9wkVReKAhsEAbDjh/0KrBGTEXelqZLpOBRDaIRvlzZ9sjmUP+gKbpvzyJnei2JHQiE8JAgj7YcNloINbGBw==}
     engines: {node: '>= 10'}
+
+  '@asamuzakjp/css-color@2.8.2':
+    resolution: {integrity: sha512-RtWv9jFN2/bLExuZgFFZ0I3pWWeezAHGgrmjqGGWclATl1aDe3yhCUaI0Ilkp6OCk9zX7+FjvDasEX8Q9Rxc5w==}
 
   '@avnu/avnu-sdk@2.1.1':
     resolution: {integrity: sha512-y/r/pVT2pU33fGHNVE7A5UIAqQhjEXYQhUh7EodY1s5H7mhRd5U8zHOtI5z6vmpuSnUv0hSvOmmgz8HTuwZ7ew==}
@@ -525,6 +534,34 @@ packages:
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
+
+  '@csstools/color-helpers@5.0.1':
+    resolution: {integrity: sha512-MKtmkA0BX87PKaO1NFRTFH+UnkgnmySQOvNxJubsadusqPEC2aJ9MOQiMceZJJ6oitUl/i0L6u0M1IrmAOmgBA==}
+    engines: {node: '>=18'}
+
+  '@csstools/css-calc@2.1.1':
+    resolution: {integrity: sha512-rL7kaUnTkL9K+Cvo2pnCieqNpTKgQzy5f+N+5Iuko9HAoasP+xgprVh7KN/MaJVvVL1l0EzQq2MoqBHKSrDrag==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@csstools/css-parser-algorithms': ^3.0.4
+      '@csstools/css-tokenizer': ^3.0.3
+
+  '@csstools/css-color-parser@3.0.7':
+    resolution: {integrity: sha512-nkMp2mTICw32uE5NN+EsJ4f5N+IGFeCFu4bGpiKgb2Pq/7J/MpyLBeQ5ry4KKtRFZaYs6sTmcMYrSRIyj5DFKA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@csstools/css-parser-algorithms': ^3.0.4
+      '@csstools/css-tokenizer': ^3.0.3
+
+  '@csstools/css-parser-algorithms@3.0.4':
+    resolution: {integrity: sha512-Up7rBoV77rv29d3uKHUIVubz1BTcgyUK72IvCQAbfbMv584xHcGKCKbWh7i8hPrRJ7qU4Y8IO3IY9m+iTB7P3A==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@csstools/css-tokenizer': ^3.0.3
+
+  '@csstools/css-tokenizer@3.0.3':
+    resolution: {integrity: sha512-UJnjoFsmxfKUdNYdWgOB0mWUypuLvAfQPH1+pyvRJs6euowbFkFC6P13w1l8mJyi3vxYMxc9kld5jZEGRQs6bw==}
+    engines: {node: '>=18'}
 
   '@derhuerst/http-basic@8.2.4':
     resolution: {integrity: sha512-F9rL9k9Xjf5blCz8HsJRO4diy111cayL2vkY2XE4r4t3n0yPXVYy3KD3nJ1qbrSn9743UWSXH4IwuCa/HWlGFw==}
@@ -2952,6 +2989,10 @@ packages:
     resolution: {integrity: sha512-h66W1URKpBS5YMI/V8PyXvTMFT8SupJ1IzoIV8IeBC/ji8WVmrO8dGlTi+2dh6whmdk6BiKJLD/ZBkhWbcg6nA==}
     engines: {node: '>=18'}
 
+  cssstyle@4.2.1:
+    resolution: {integrity: sha512-9+vem03dMXG7gDmZ62uqmRiMRNtinIZ9ZyuF6BdxzfOD+FdN5hretzynkn0ReS2DO2GSw76RWHs0UmJPI2zUjw==}
+    engines: {node: '>=18'}
+
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
@@ -4057,6 +4098,15 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
+    peerDependenciesMeta:
+      canvas:
+        optional: true
+
+  jsdom@26.0.0:
+    resolution: {integrity: sha512-BZYDGVAIriBWTpIxYzrXjv3E/4u8+/pSG5bQdIYCbNCGOvsPkDQfTVLAIXAf9ETdCpduCVTkDe2NNZ8NIwUVzw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      canvas: ^3.0.0
     peerDependenciesMeta:
       canvas:
         optional: true
@@ -5326,6 +5376,9 @@ packages:
   rrweb-cssom@0.7.1:
     resolution: {integrity: sha512-TrEMa7JGdVm0UThDJSx7ddw5nVm3UJS9o9CCIZ72B1vSyEZoziDqBYP3XIoi/12lKrJR8rE3jeFHMok2F/Mnsg==}
 
+  rrweb-cssom@0.8.0:
+    resolution: {integrity: sha512-guoltQEx+9aMf2gDZ0s62EcV8lsXR+0w8915TC3ITdn2YueuNjdAYh/levpU9nFaoChh9RUS5ZdQMrKfVEN9tw==}
+
   run-series@1.1.9:
     resolution: {integrity: sha512-Arc4hUN896vjkqCYrUXquBFtRZdv1PfLbTYP71efP6butxyQ0kWpiNJyAgsxscmQg1cqvHY32/UCBzXedTpU2g==}
 
@@ -6571,6 +6624,14 @@ snapshots:
       '@anush008/tokenizers-linux-x64-gnu': 0.0.0
       '@anush008/tokenizers-win32-x64-msvc': 0.0.0
 
+  '@asamuzakjp/css-color@2.8.2':
+    dependencies:
+      '@csstools/css-calc': 2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-color-parser': 3.0.7(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-tokenizer': 3.0.3
+      lru-cache: 11.0.2
+
   '@avnu/avnu-sdk@2.1.1(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(qs@6.13.1)(starknet@6.18.0)':
     dependencies:
       ethers: 6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -7350,6 +7411,26 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
+  '@csstools/color-helpers@5.0.1': {}
+
+  '@csstools/css-calc@2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
+    dependencies:
+      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-tokenizer': 3.0.3
+
+  '@csstools/css-color-parser@3.0.7(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
+    dependencies:
+      '@csstools/color-helpers': 5.0.1
+      '@csstools/css-calc': 2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-tokenizer': 3.0.3
+
+  '@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3)':
+    dependencies:
+      '@csstools/css-tokenizer': 3.0.3
+
+  '@csstools/css-tokenizer@3.0.3': {}
+
   '@derhuerst/http-basic@8.2.4':
     dependencies:
       caseless: 0.12.0
@@ -7626,13 +7707,13 @@ snapshots:
       - vue
       - yaml
 
-  '@elizaos/client-discord@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(canvas@2.11.2)(ffmpeg-static@5.2.0)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)':
+  '@elizaos/client-discord@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(ffmpeg-static@5.2.0)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)':
     dependencies:
       '@discordjs/opus': https://codeload.github.com/discordjs/opus/tar.gz/31da49d8d2cc6c5a2ab1bfd332033ff7d5f9fb02
       '@discordjs/rest': 2.4.0
       '@discordjs/voice': 0.17.0(@discordjs/opus@https://codeload.github.com/discordjs/opus/tar.gz/31da49d8d2cc6c5a2ab1bfd332033ff7d5f9fb02)(bufferutil@4.0.9)(ffmpeg-static@5.2.0)(utf-8-validate@5.0.10)
       '@elizaos/core': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(vue@3.5.13(typescript@5.6.3))
-      '@elizaos/plugin-node': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(canvas@2.11.2)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(zod@3.23.8)
+      '@elizaos/plugin-node': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(zod@3.23.8)
       discord.js: 14.16.3(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       libsodium-wrappers: 0.7.15
       prism-media: 1.3.5(@discordjs/opus@https://codeload.github.com/discordjs/opus/tar.gz/31da49d8d2cc6c5a2ab1bfd332033ff7d5f9fb02)(ffmpeg-static@5.2.0)
@@ -7858,7 +7939,7 @@ snapshots:
       - vue
       - yaml
 
-  '@elizaos/plugin-node@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(canvas@2.11.2)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(zod@3.23.8)':
+  '@elizaos/plugin-node@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(onnxruntime-node@1.20.0)(puppeteer-core@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(puppeteer@19.11.1(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(zod@3.23.8)':
     dependencies:
       '@aws-sdk/client-s3': 3.722.0
       '@aws-sdk/s3-request-presigner': 3.722.0
@@ -7877,7 +7958,7 @@ snapshots:
       cldr-segmentation: 2.2.1
       command-exists: 1.2.9
       csv-writer: 1.6.0
-      echogarden: 2.0.7(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      echogarden: 2.0.7(bufferutil@4.0.9)(utf-8-validate@5.0.10)(zod@3.23.8)
       espeak-ng: 1.0.2
       ffmpeg-static: 5.2.0
       fluent-ffmpeg: 2.1.3
@@ -7952,12 +8033,12 @@ snapshots:
       - winax
       - zod
 
-  '@elizaos/plugin-solana@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(form-data@4.0.1)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(rollup@4.29.2)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)(zod@3.23.8)':
+  '@elizaos/plugin-solana@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(form-data@4.0.1)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(rollup@4.29.2)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)(zod@3.23.8)':
     dependencies:
       '@coral-xyz/anchor': 0.30.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@elizaos/core': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(vue@3.5.13(typescript@5.6.3))
       '@elizaos/plugin-tee': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(postcss@8.4.49)(react@19.0.0)(rollup@4.29.2)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(utf-8-validate@5.0.10)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)(zod@3.23.8)
-      '@elizaos/plugin-trustdb': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
+      '@elizaos/plugin-trustdb': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
       '@solana/spl-token': 0.4.9(@solana/web3.js@1.95.8(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.95.8(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       bignumber: 1.1.0
@@ -7968,7 +8049,7 @@ snapshots:
       node-cache: 5.1.2
       pumpdotfun-sdk: 1.3.2(bufferutil@4.0.9)(fastestsmallesttextencoderdecoder@1.0.22)(rollup@4.29.2)(typescript@5.6.3)(utf-8-validate@5.0.10)
       tsup: 8.3.5(postcss@8.4.49)(typescript@5.6.3)(yaml@2.7.0)
-      vitest: 2.1.4(@types/node@22.10.5)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))
+      vitest: 2.1.4(@types/node@22.10.5)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       whatwg-url: 14.1.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
@@ -8020,17 +8101,17 @@ snapshots:
       - yaml
       - zod
 
-  '@elizaos/plugin-starknet@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))(postcss@8.4.49)(qs@6.13.1)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)':
+  '@elizaos/plugin-starknet@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(postcss@8.4.49)(qs@6.13.1)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)':
     dependencies:
       '@avnu/avnu-sdk': 2.1.1(ethers@6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10))(qs@6.13.1)(starknet@6.18.0)
       '@elizaos/core': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(vue@3.5.13(typescript@5.6.3))
-      '@elizaos/plugin-trustdb': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
+      '@elizaos/plugin-trustdb': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)
       '@uniswap/sdk-core': 6.0.0
       '@unruggable_starknet/core': 0.1.0(starknet@6.18.0)
       starknet: 6.18.0
       tsup: 8.3.5(postcss@8.4.49)(typescript@5.6.3)(yaml@2.7.0)
       unruggable-sdk: 1.4.0(starknet@6.18.0)
-      vitest: 2.1.5(@types/node@22.10.5)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))
+      vitest: 2.1.5(@types/node@22.10.5)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       whatwg-url: 14.1.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
@@ -8126,13 +8207,13 @@ snapshots:
       - yaml
       - zod
 
-  '@elizaos/plugin-trustdb@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)':
+  '@elizaos/plugin-trustdb@0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(@types/node@22.10.5)(axios@1.7.9)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(postcss@8.4.49)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))(whatwg-url@14.1.0)(yaml@2.7.0)':
     dependencies:
       '@elizaos/core': 0.1.7(@google-cloud/vertexai@1.9.2)(@langchain/core@0.3.27(openai@4.73.0(zod@3.23.8)))(axios@1.7.9)(react@19.0.0)(sswr@2.1.0(svelte@5.16.2))(svelte@5.16.2)(vue@3.5.13(typescript@5.6.3))
       dompurify: 3.2.2
       tsup: 8.3.5(postcss@8.4.49)(typescript@5.6.3)(yaml@2.7.0)
       uuid: 11.0.3
-      vitest: 2.1.5(@types/node@22.10.5)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10))
+      vitest: 2.1.5(@types/node@22.10.5)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       whatwg-url: 14.1.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
@@ -10630,6 +10711,11 @@ snapshots:
     dependencies:
       rrweb-cssom: 0.7.1
 
+  cssstyle@4.2.1:
+    dependencies:
+      '@asamuzakjp/css-color': 2.8.2
+      rrweb-cssom: 0.8.0
+
   csstype@3.1.3: {}
 
   csv-writer@1.6.0: {}
@@ -10841,7 +10927,7 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  echogarden@2.0.7(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10)(zod@3.23.8):
+  echogarden@2.0.7(bufferutil@4.0.9)(utf-8-validate@5.0.10)(zod@3.23.8):
     dependencies:
       '@aws-sdk/client-polly': 3.721.0
       '@aws-sdk/client-transcribe-streaming': 3.721.0
@@ -10869,7 +10955,7 @@ snapshots:
       html-to-text: 9.0.5
       import-meta-resolve: 4.1.0
       jieba-wasm: 2.2.0
-      jsdom: 25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10)
+      jsdom: 25.0.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       json5: 2.2.3
       kuromoji: 0.1.2
       microsoft-cognitiveservices-speech-sdk: 1.42.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -11161,7 +11247,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.4
+      debug: 4.4.0
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -11887,7 +11973,7 @@ snapshots:
 
   jsbn@1.1.0: {}
 
-  jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10):
+  jsdom@25.0.1(bufferutil@4.0.9)(utf-8-validate@5.0.10):
     dependencies:
       cssstyle: 4.1.0
       data-urls: 5.0.0
@@ -11910,8 +11996,34 @@ snapshots:
       whatwg-url: 14.1.0
       ws: 8.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       xml-name-validator: 5.0.0
-    optionalDependencies:
-      canvas: 2.11.2
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
+  jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10):
+    dependencies:
+      cssstyle: 4.2.1
+      data-urls: 5.0.0
+      decimal.js: 10.4.3
+      form-data: 4.0.1
+      html-encoding-sniffer: 4.0.0
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.6
+      is-potential-custom-element-name: 1.0.1
+      nwsapi: 2.2.16
+      parse5: 7.2.1
+      rrweb-cssom: 0.8.0
+      saxes: 6.0.0
+      symbol-tree: 3.2.4
+      tough-cookie: 5.0.0
+      w3c-xmlserializer: 5.0.0
+      webidl-conversions: 7.0.0
+      whatwg-encoding: 3.1.1
+      whatwg-mimetype: 4.0.0
+      whatwg-url: 14.1.0
+      ws: 8.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      xml-name-validator: 5.0.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -13314,6 +13426,8 @@ snapshots:
 
   rrweb-cssom@0.7.1: {}
 
+  rrweb-cssom@0.8.0: {}
+
   run-series@1.1.9: {}
 
   safe-buffer@5.1.2: {}
@@ -14183,7 +14297,7 @@ snapshots:
       '@types/node': 22.10.5
       fsevents: 2.3.3
 
-  vitest@2.1.4(@types/node@22.10.5)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10)):
+  vitest@2.1.4(@types/node@22.10.5)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)):
     dependencies:
       '@vitest/expect': 2.1.4
       '@vitest/mocker': 2.1.4(vite@5.4.11(@types/node@22.10.5))
@@ -14207,7 +14321,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.10.5
-      jsdom: 25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10)
+      jsdom: 26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -14219,7 +14333,7 @@ snapshots:
       - supports-color
       - terser
 
-  vitest@2.1.5(@types/node@22.10.5)(jsdom@25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10)):
+  vitest@2.1.5(@types/node@22.10.5)(jsdom@26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)):
     dependencies:
       '@vitest/expect': 2.1.5
       '@vitest/mocker': 2.1.5(vite@5.4.11(@types/node@22.10.5))
@@ -14243,7 +14357,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.10.5
-      jsdom: 25.0.1(bufferutil@4.0.9)(canvas@2.11.2)(utf-8-validate@5.0.10)
+      jsdom: 26.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - less
       - lightningcss

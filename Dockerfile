@@ -2,7 +2,7 @@
 FROM node:23.3.0-slim AS builder
 
 # Install pnpm globally and install necessary build tools
-RUN npm install -g pnpm@9.15.1 
+RUN npm install -g pnpm@9.15.1
 RUN apt-get update && \
     apt-get install -y git python3 make g++ && \
     apt-get clean && \
@@ -26,7 +26,7 @@ COPY ./.env ./
 
 # Install dependencies and build the project
 RUN pnpm i
-RUN pnpm build 
+RUN pnpm build
 # Create a new stage for the final image
 FROM node:23.3.0-slim
 

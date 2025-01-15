@@ -23,6 +23,10 @@ import {
   parseArguments,
 } from "./config/index.ts";
 import { initializeDatabase } from "./database/index.ts";
+import { ethDenverSponsorsProvider } from "./providers/ethDenverSponsorsProvider.ts";
+import { ethDenverEventsProvider } from "./providers/ethDenverEventsProvider.ts";
+import { ethDenverVenueProvider } from "./providers/ethDenverVenueProvider.ts";
+import { faqProvider } from "./providers/faqProvider.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,7 +64,12 @@ export function createAgent(
       nodePlugin,
       character.settings?.secrets?.WALLET_PUBLIC_KEY ? solanaPlugin : null,
     ].filter(Boolean),
-    providers: [],
+    providers: [
+      ethDenverEventsProvider,
+      ethDenverSponsorsProvider,
+      ethDenverVenueProvider,
+      faqProvider,
+    ],
     actions: [],
     services: [],
     managers: [],
