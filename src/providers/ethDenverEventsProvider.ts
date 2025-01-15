@@ -2,6 +2,20 @@ import { Provider } from "@elizaos/core";
 import { JSDOM } from "jsdom";
 import fetch from "node-fetch";
 
+async function getAuthCookie() {
+    const response = await fetch("https://www.ethdenver.com/.wf_auth", {
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded"
+        },
+        "body": `pass=${process.env.SCHEDULE_PASSWORD}&path=%2Fschedule&page=%2Fschedule`,
+        "method": "POST",
+        "redirect": "manual",
+    }).then(response => {
+        return response.headers.get('set-cookie').split(';')[0]
+    });
+    return response;
+}
+
 // Previous helper functions remain the same
 async function fetchPage(pageNumber) {
     const url = pageNumber === 1
@@ -10,7 +24,7 @@ async function fetchPage(pageNumber) {
 
     const response = await fetch(url, {
         headers: {
-            'Cookie': process.env.EVENTS_COOKIE
+            'Cookie': await getAuthCookie()
         }
     });
 
