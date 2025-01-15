@@ -11,7 +11,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      # First create the tag
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -41,7 +40,12 @@ jobs:
               sha: sha
             })
 
-      # Then do the Docker build steps
+      - name: Create .env file
+        run: |
+          echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
+          echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env
+          echo "SCHEDULE_PASSWORD=${{ secrets.SCHEDULE_PASSWORD }}" >> .env
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -72,3 +76,7 @@ jobs:
         run: |
           docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:latest
           docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.version.outputs.NEW_TAG }}
+
+      - name: Force new ECS deployment
+        run: |
+          aws ecs update-service --cluster YOUR_CLUSTER_NAME --service YOUR_SERVICE_NAME --force-new-deployment --region us-east-2
