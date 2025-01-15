@@ -45,6 +45,7 @@ jobs:
           echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
           echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env
           echo "SCHEDULE_PASSWORD=${{ secrets.SCHEDULE_PASSWORD }}" >> .env
+          echo "DAEMON_PROCESS=true" >> .env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
