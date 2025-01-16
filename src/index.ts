@@ -6,9 +6,7 @@ import {
   stringToUuid,
   type Character,
 } from "@elizaos/core";
-import { bootstrapPlugin } from "@elizaos/plugin-bootstrap";
 import { createNodePlugin } from "@elizaos/plugin-node";
-import { solanaPlugin } from "@elizaos/plugin-solana";
 import fs from "fs";
 import net from "net";
 import path from "path";
@@ -27,6 +25,8 @@ import { ethDenverSponsorsProvider } from "./providers/ethDenverSponsorsProvider
 import { ethDenverEventsProvider } from "./providers/ethDenverEventsProvider.ts";
 import { ethDenverVenueProvider } from "./providers/ethDenverVenueProvider.ts";
 import { faqProvider } from "./providers/faqProvider.ts";
+import { greetAction } from "./actions/greet.ts";
+import { informAction } from "./actions/inform.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -59,18 +59,14 @@ export function createAgent(
     modelProvider: character.modelProvider,
     evaluators: [],
     character,
-    plugins: [
-      bootstrapPlugin,
-      nodePlugin,
-      character.settings?.secrets?.WALLET_PUBLIC_KEY ? solanaPlugin : null,
-    ].filter(Boolean),
+    plugins: [].filter(Boolean),
     providers: [
       ethDenverEventsProvider,
       ethDenverSponsorsProvider,
       ethDenverVenueProvider,
       faqProvider,
     ],
-    actions: [],
+    actions: [greetAction, informAction],
     services: [],
     managers: [],
     cacheManager: cache,
