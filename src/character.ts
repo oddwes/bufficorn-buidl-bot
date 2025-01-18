@@ -1,10 +1,10 @@
-import { Character, Clients, ModelProviderName } from "@elizaos/core";
+import { Character, ModelProviderName } from "@elizaos/core";
 
 export const character: Character = {
     name: "Unicorn",
     username: "unicorn",
     plugins: [],
-    clients: [Clients.TELEGRAM],
+    clients: [],
     modelProvider: ModelProviderName.ANTHROPIC,
     settings: {
         secrets: {},
