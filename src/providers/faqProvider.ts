@@ -37,6 +37,8 @@ const fetchWithRetry = async (url: string, maxRetries: number = 2): Promise<Fetc
 
 export const faqProvider: Provider = {
     get: async () => {
+        const startTime = performance.now();
+
         try {
             const docUrl = 'https://docs.google.com/document/d/1B1A6EcZWhPTpN87txdu7kqK6Q1AZH3kwaa7hWtUOQcg/edit?tab=t.0';
             const exportUrl = docUrl.replace(/\/edit.*$/, '/export?format=txt');
@@ -44,8 +46,15 @@ export const faqProvider: Provider = {
             const response = await fetchWithRetry(exportUrl);
             const content = await response.text();
 
+            const endTime = performance.now();
+            const executionTime = (endTime - startTime) / 1000; // Convert to seconds
+            console.log(`FAQ fetched in ${executionTime.toFixed(2)} seconds`);
+
             return content;
         } catch (error) {
+            const endTime = performance.now();
+            const executionTime = (endTime - startTime) / 1000;
+            console.log(`FAQ fetch failed after ${executionTime.toFixed(2)} seconds`);
             console.error('Error reading document:', error);
             throw error;
         }

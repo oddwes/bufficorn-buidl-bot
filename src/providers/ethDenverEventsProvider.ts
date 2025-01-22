@@ -1,19 +1,27 @@
 import { Provider } from "@elizaos/core";
-import { JSDOM } from "jsdom";
 import fetch from "node-fetch";
+import { parse } from 'node-html-parser';
+
+let authCookiePromise = null;
 
 async function getAuthCookie() {
-    const response = await fetch("https://www.ethdenver.com/.wf_auth", {
-        "headers": {
-            "content-type": "application/x-www-form-urlencoded"
-        },
-        "body": `pass=${process.env.SCHEDULE_PASSWORD}&path=%2Fschedule&page=%2Fschedule`,
-        "method": "POST",
-        "redirect": "manual",
-    }).then(response => {
-        return response.headers.get('set-cookie').split(';')[0]
-    });
-    return response;
+    // Use a single promise for concurrent requests
+    if (!authCookiePromise) {
+        authCookiePromise = fetch("https://www.ethdenver.com/.wf_auth", {
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            "body": `pass=${process.env.SCHEDULE_PASSWORD}&path=%2Fschedule&page=%2Fschedule`,
+            "method": "POST",
+            "redirect": "manual",
+        }).then(response => {
+            const cookie = response.headers.get('set-cookie').split(';')[0];
+            // Reset promise after some time
+            setTimeout(() => { authCookiePromise = null; }, 50 * 60 * 1000);
+            return cookie;
+        });
+    }
+    return authCookiePromise;
 }
 
 // Previous helper functions remain the same
@@ -35,24 +43,25 @@ async function fetchPage(pageNumber) {
     return response.text();
 }
 
-function parseEvents(doc) {
+function parseEvents(html) {
+    const root = parse(html);
     const events = [];
-    const sessions = doc.querySelectorAll('.sessioncollectionitem');
+    const sessions = root.querySelectorAll('.sessioncollectionitem');
 
     sessions.forEach(session => {
         const card = session.querySelector('.itemcard');
-        if (card && !card.classList.contains('w-condition-invisible')) {
+        if (card && !card.classList.toString().includes('w-condition-invisible')) {
             const titleElement = session.querySelector('.sessionname');
             const dateElement = session.querySelector('.iso-date');
             const locationElement = session.querySelector('.rowitem_border .startdate');
             const speakersElement = session.querySelector('.text-block-9');
 
-            const title = titleElement ? titleElement.textContent.trim() : '';
-            const isoDate = dateElement ? dateElement.textContent.trim() : '';
+            const title = titleElement ? titleElement.text.trim() : '';
+            const isoDate = dateElement ? dateElement.text.trim() : '';
             const date = isoDate ? new Date(isoDate) : null;
-            const location = locationElement ? locationElement.textContent.trim() : '';
-            const speakers = speakersElement && !speakersElement.classList.contains('w-dyn-bind-empty')
-                ? speakersElement.textContent.trim()
+            const location = locationElement ? locationElement.text.trim() : '';
+            const speakers = speakersElement && !speakersElement.classList.toString().includes('w-dyn-bind-empty')
+                ? speakersElement.text.trim()
                 : '';
 
             events.push({
@@ -71,10 +80,10 @@ function parseEvents(doc) {
     return events;
 }
 
-function getTotalPages(doc) {
-    const pageCount = doc.querySelector('.w-page-count');
+function getTotalPages(root) {
+    const pageCount = root.querySelector('.w-page-count');
     if (pageCount) {
-        const text = pageCount.textContent.trim();
+        const text = pageCount.text.trim();
         const match = text.match(/\d+\s*\/\s*(\d+)/);
         return match ? parseInt(match[1]) : 1;
     }
@@ -83,28 +92,31 @@ function getTotalPages(doc) {
 
 async function getCompleteSchedule() {
     try {
-        let allEvents = [];
-        let currentPage = 1;
-
         const firstPageHtml = await fetchPage(1);
-        const firstPageDom = new JSDOM(firstPageHtml);
-        const totalPages = getTotalPages(firstPageDom.window.document);
+        const firstPageRoot = parse(firstPageHtml);
+        const totalPages = getTotalPages(firstPageRoot);
 
-        while (currentPage <= totalPages) {
-            const html = currentPage === 1 ? firstPageHtml : await fetchPage(currentPage);
-            const dom = new JSDOM(html);
-            const events = parseEvents(dom.window.document);
+        // Batch requests in groups of 3
+        const batchSize = 3;
+        const allEvents = [];
 
-            allEvents = allEvents.concat(events);
-            currentPage++;
+        // Process first page
+        allEvents.push(...parseEvents(firstPageHtml));
 
-            if (currentPage <= totalPages) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
+        // Process remaining pages in batches
+        for (let i = 2; i <= totalPages; i += batchSize) {
+            const batch = Array.from(
+                { length: Math.min(batchSize, totalPages - i + 1) },
+                (_, index) => fetchPage(i + index)
+            );
+
+            const pages = await Promise.all(batch);
+            pages.forEach(html => {
+                allEvents.push(...parseEvents(html));
+            });
         }
 
         return allEvents;
-
     } catch (error) {
         console.error('Error fetching or parsing schedule:', error);
         return [];
@@ -136,9 +148,35 @@ async function getScheduleAsString() {
     return output;
 }
 
+let cachedSchedule = null;
+let scheduleExpiry = null;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 export const ethDenverEventsProvider: Provider = {
     get: async () => {
-        return await getScheduleAsString();
+        const startTime = performance.now();
+
+        try {
+            // Check cache first
+            if (cachedSchedule && scheduleExpiry && Date.now() < scheduleExpiry) {
+                const endTime = performance.now();
+                console.log(`Events fetched from cache in ${((endTime - startTime)/1000).toFixed(2)} seconds`);
+                return cachedSchedule;
+            }
+
+            const result = await getScheduleAsString();
+
+            // Cache the result
+            cachedSchedule = result;
+            scheduleExpiry = Date.now() + CACHE_DURATION;
+
+            const endTime = performance.now();
+            console.log(`Events fetched from source in ${((endTime - startTime)/1000).toFixed(2)} seconds`);
+
+            return result;
+        } catch (error) {
+            console.error('Error fetching schedule:', error);
+            throw error;
+        }
     },
 };
-

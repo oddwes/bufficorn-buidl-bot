@@ -72,7 +72,15 @@ async function parseETHDenverSponsors() {
 
 export const ethDenverSponsorsProvider: Provider = {
     get: async () => {
-        return await parseETHDenverSponsors();
+        const startTime = performance.now();
+
+        const result = await parseETHDenverSponsors();
+
+        const endTime = performance.now();
+        const executionTime = (endTime - startTime) / 1000; // Convert to seconds
+        console.log(`Providers fetched in ${executionTime.toFixed(2)} seconds`);
+
+        return result;
     },
 };
 
