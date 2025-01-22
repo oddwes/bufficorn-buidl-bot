@@ -42,7 +42,7 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "OPENAI_API_KEY=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
           echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env
           echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
           echo "SCHEDULE_PASSWORD=${{ secrets.SCHEDULE_PASSWORD }}" >> .env
