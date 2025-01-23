@@ -1,44 +1,39 @@
-name: Auto Tag and Docker Build
+name: Docker Build and Deploy
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Version tag to build (e.g. v1.0.1)'
+        required: true
+  workflow_run:
+    workflows: ["Auto Tag"]
+    types:
+      - completed
 
 jobs:
-  tag-and-build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Get latest version and bump
-        id: version
+      - name: Get tag from Auto Tag workflow
+        if: github.event_name == 'workflow_run'
+        uses: dawidd6/action-output-retriever@v2
+        id: tag-workflow
+        with:
+          workflow: auto-tag.yml
+          run_id: ${{ github.event.workflow_run.id }}
+          name: new_tag
+
+      - name: Set tag variable
+        id: set-tag
         run: |
-          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          major=$(echo $latest_tag | cut -d. -f1 | tr -d 'v')
-          minor=$(echo $latest_tag | cut -d. -f2)
-          patch=$(echo $latest_tag | cut -d. -f3)
-          new_patch=$((patch + 1))
-          new_tag="v$major.$minor.$new_patch"
-          echo "NEW_TAG=$new_tag" >> $GITHUB_OUTPUT
-
-      - name: Create tag
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const tag = '${{ steps.version.outputs.NEW_TAG }}'
-            const sha = context.sha
-
-            await github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: `refs/tags/${tag}`,
-              sha: sha
-            })
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "TAG=${{ steps.tag-workflow.outputs.new_tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "TAG=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create .env file
         run: |
@@ -70,14 +65,14 @@ jobs:
           load: true
           tags: |
             berlin/eliza:latest
-            berlin/eliza:${{ steps.version.outputs.NEW_TAG }}
+            berlin/eliza:${{ steps.set-tag.outputs.TAG }}
             438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:latest
-            438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.version.outputs.NEW_TAG }}
+            438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.set-tag.outputs.TAG }}
 
       - name: Push to ECR
         run: |
           docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:latest
-          docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.version.outputs.NEW_TAG }}
+          docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.set-tag.outputs.TAG }}
 
       - name: Force new ECS deployment
         run: |
