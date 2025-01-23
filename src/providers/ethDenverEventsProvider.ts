@@ -1,6 +1,7 @@
 import { Provider } from "@elizaos/core";
 import fetch from "node-fetch";
 import { parse } from 'node-html-parser';
+import { CachingService } from "../services/cachingservice.ts";
 
 let authCookiePromise = null;
 
@@ -148,35 +149,8 @@ async function getScheduleAsString() {
     return output;
 }
 
-let cachedSchedule = null;
-let scheduleExpiry = null;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const eventsCache = new CachingService<string>('Events');
 
 export const ethDenverEventsProvider: Provider = {
-    get: async () => {
-        const startTime = performance.now();
-
-        try {
-            // Check cache first
-            if (cachedSchedule && scheduleExpiry && Date.now() < scheduleExpiry) {
-                const endTime = performance.now();
-                console.log(`Events fetched from cache in ${((endTime - startTime)/1000).toFixed(2)} seconds`);
-                return cachedSchedule;
-            }
-
-            const result = await getScheduleAsString();
-
-            // Cache the result
-            cachedSchedule = result;
-            scheduleExpiry = Date.now() + CACHE_DURATION;
-
-            const endTime = performance.now();
-            console.log(`Events fetched from source in ${((endTime - startTime)/1000).toFixed(2)} seconds`);
-
-            return result;
-        } catch (error) {
-            console.error('Error fetching schedule:', error);
-            throw error;
-        }
-    },
+    get: () => eventsCache.getWithCache(getScheduleAsString)
 };

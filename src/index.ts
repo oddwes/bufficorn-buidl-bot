@@ -26,6 +26,8 @@ import { ethDenverEventsProvider } from "./providers/ethDenverEventsProvider.ts"
 import { ethDenverVenueProvider } from "./providers/ethDenverVenueProvider.ts";
 import { faqProvider } from "./providers/faqProvider.ts";
 import { noneAction } from "./actions/none.ts";
+import { accountCreationFaqProvider } from "./providers/accountCreationFaqProvider.ts";
+import { ticketInfoProvider } from "./providers/ticketInfoProvider.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -64,6 +66,8 @@ export function createAgent(
       ethDenverEventsProvider,
       ethDenverSponsorsProvider,
       faqProvider,
+      accountCreationFaqProvider,
+      ticketInfoProvider
     ],
     actions: [noneAction],
     services: [],
