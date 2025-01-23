@@ -1,7 +1,7 @@
 import { Provider } from "@elizaos/core";
 import fetch from "node-fetch";
 import { parse } from 'node-html-parser';
-import { CachingService } from "../services/cachingservice.ts";
+import { CachingService } from "../services/cachingService.ts";
 
 let authCookiePromise = null;
 
