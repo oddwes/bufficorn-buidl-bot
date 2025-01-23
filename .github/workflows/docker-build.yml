@@ -16,21 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Get tag from Auto Tag workflow
-        if: github.event_name == 'workflow_run'
-        uses: dawidd6/action-output-retriever@v2
-        id: tag-workflow
         with:
-          workflow: auto-tag.yml
-          run_id: ${{ github.event.workflow_run.id }}
-          name: new_tag
+          fetch-depth: 0
 
-      - name: Set tag variable
-        id: set-tag
+      - name: Get tag
+        id: get-tag
         run: |
           if [ "${{ github.event_name }}" = "workflow_run" ]; then
-            echo "TAG=${{ steps.tag-workflow.outputs.new_tag }}" >> $GITHUB_OUTPUT
+            echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
           else
             echo "TAG=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
           fi
@@ -65,14 +58,14 @@ jobs:
           load: true
           tags: |
             berlin/eliza:latest
-            berlin/eliza:${{ steps.set-tag.outputs.TAG }}
+            berlin/eliza:${{ steps.get-tag.outputs.TAG }}
             438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:latest
-            438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.set-tag.outputs.TAG }}
+            438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.get-tag.outputs.TAG }}
 
       - name: Push to ECR
         run: |
           docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:latest
-          docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.set-tag.outputs.TAG }}
+          docker push 438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.get-tag.outputs.TAG }}
 
       - name: Force new ECS deployment
         run: |
