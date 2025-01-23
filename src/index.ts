@@ -28,6 +28,7 @@ import { faqProvider } from "./providers/faqProvider.ts";
 import { noneAction } from "./actions/none.ts";
 import { accountCreationFaqProvider } from "./providers/accountCreationFaqProvider.ts";
 import { ticketInfoProvider } from "./providers/ticketInfoProvider.ts";
+import { pageParsingProvider } from "./providers/pageParsingProvider.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -62,12 +63,13 @@ export function createAgent(
     character,
     plugins: [].filter(Boolean),
     providers: [
-      ethDenverVenueProvider,
-      ethDenverEventsProvider,
-      ethDenverSponsorsProvider,
-      faqProvider,
-      accountCreationFaqProvider,
-      ticketInfoProvider
+      // ethDenverVenueProvider,
+      // ethDenverEventsProvider,
+      // ethDenverSponsorsProvider,
+      // faqProvider,
+      // accountCreationFaqProvider,
+      // ticketInfoProvider
+      pageParsingProvider
     ],
     actions: [noneAction],
     services: [],
