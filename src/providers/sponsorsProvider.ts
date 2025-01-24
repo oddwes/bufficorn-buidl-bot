@@ -70,7 +70,7 @@ async function parseETHDenverSponsors() {
     }
 }
 
-export const ethDenverSponsorsProvider: Provider = {
+export const sponsorsProvider: Provider = {
     get: async () => {
         const startTime = performance.now();
 

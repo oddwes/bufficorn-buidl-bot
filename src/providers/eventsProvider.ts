@@ -151,6 +151,6 @@ async function getScheduleAsString() {
 
 const eventsCache = new CachingService<string>('Events');
 
-export const ethDenverEventsProvider: Provider = {
+export const eventsProvider: Provider = {
     get: () => eventsCache.getWithCache(getScheduleAsString)
 };

@@ -21,9 +21,9 @@ import {
   parseArguments,
 } from "./config/index.ts";
 import { initializeDatabase } from "./database/index.ts";
-import { ethDenverSponsorsProvider } from "./providers/ethDenverSponsorsProvider.ts";
-import { ethDenverEventsProvider } from "./providers/ethDenverEventsProvider.ts";
-import { ethDenverVenueProvider } from "./providers/ethDenverVenueProvider.ts";
+import { sponsorsProvider } from "./providers/sponsorsProvider.ts";
+import { eventsProvider } from "./providers/eventsProvider.ts";
+import { venueProvider } from "./providers/venueProvider.ts";
 import { faqProvider } from "./providers/faqProvider.ts";
 import { noneAction } from "./actions/none.ts";
 import { accountCreationFaqProvider } from "./providers/accountCreationFaqProvider.ts";
@@ -63,9 +63,9 @@ export function createAgent(
     character,
     plugins: [].filter(Boolean),
     providers: [
-      ethDenverVenueProvider,
-      ethDenverEventsProvider,
-      ethDenverSponsorsProvider,
+      venueProvider,
+      eventsProvider,
+      sponsorsProvider,
       faqProvider,
       accountCreationFaqProvider,
       ticketInfoProvider,
