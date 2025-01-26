@@ -27,6 +27,8 @@
     "amqplib": "0.10.5",
     "better-sqlite3": "11.5.0",
     "fs": "0.0.1-security",
+    "google-auth-library": "^9.15.1",
+    "google-spreadsheet": "^4.1.4",
     "jsdom": "^26.0.0",
     "net": "1.0.2",
     "node-fetch": "^3.3.2",
