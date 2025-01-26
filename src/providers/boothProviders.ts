@@ -5,7 +5,9 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 const SPREADSHEET_ID = process.env.BOOTH_SPREADSHEET_ID;
 const SHEET_ID = process.env.BOOTH_SHEET_ID;
 const GOOGLE_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
+const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY
+    ?.replace(/\\n/g, '\n')
+    ?.replace(/"([^"]*)"/, '$1');
 
 export const boothProvider: Provider = {
     get: async () => {
