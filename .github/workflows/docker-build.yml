@@ -61,8 +61,6 @@ jobs:
           platforms: linux/amd64
           load: true
           tags: |
-            berlin/eliza:latest
-            berlin/eliza:${{ steps.get-tag.outputs.TAG }}
             438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:latest
             438465133266.dkr.ecr.us-east-2.amazonaws.com/unicorn:${{ steps.get-tag.outputs.TAG }}
 
