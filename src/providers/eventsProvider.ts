@@ -24,7 +24,7 @@ function parseEvents(html: string) {
         const location = container.querySelector('.rowitem_border')?.text.trim() || '';
 
         // Extract speakers
-        const speakers = container.querySelectorAll('.speaker-name')
+        const speakers = container.querySelectorAll('.speakers')
             .map(speaker => speaker.text.trim())
             .filter(name => name)
             .join(', ');

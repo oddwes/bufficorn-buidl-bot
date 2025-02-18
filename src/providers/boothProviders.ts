@@ -1,7 +1,7 @@
 import { Provider } from "@elizaos/core";
 import { JWT } from "google-auth-library";
 import { GoogleSpreadsheet } from "google-spreadsheet";
-import { CachingService } from "../services/cachingService";
+import { CachingService } from "../services/cachingService.ts";
 
 const SPREADSHEET_ID = process.env.BOOTH_SPREADSHEET_ID;
 const SHEET_ID = process.env.BOOTH_SHEET_ID;
