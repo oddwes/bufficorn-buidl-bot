@@ -2,129 +2,50 @@ import { Provider } from "@elizaos/core";
 import fetch from "node-fetch";
 import { parse } from 'node-html-parser';
 import { CachingService } from "../services/cachingService.ts";
+import { PerformanceTracker } from "../services/performanceTracker.ts";
 
-let authCookiePromise = null;
-
-async function getAuthCookie() {
-    // Use a single promise for concurrent requests
-    if (!authCookiePromise) {
-        authCookiePromise = fetch("https://www.ethdenver.com/.wf_auth", {
-            "headers": {
-                "content-type": "application/x-www-form-urlencoded"
-            },
-            "body": `pass=${process.env.SCHEDULE_PASSWORD}&path=%2Fschedule&page=%2Fschedule`,
-            "method": "POST",
-            "redirect": "manual",
-        }).then(response => {
-            const cookie = response.headers.get('set-cookie').split(';')[0];
-            // Reset promise after some time
-            setTimeout(() => { authCookiePromise = null; }, 50 * 60 * 1000);
-            return cookie;
-        });
-    }
-    return authCookiePromise;
-}
-
-// Previous helper functions remain the same
-async function fetchPage(pageNumber) {
-    const url = pageNumber === 1
-        ? 'https://www.ethdenver.com/schedule'
-        : `https://www.ethdenver.com/schedule?88eb59fc_page=${pageNumber}`;
-
-    const response = await fetch(url, {
-        headers: {
-            'Cookie': await getAuthCookie()
-        }
-    });
-
+async function fetchSchedule() {
+    const response = await fetch('https://www.ethdenver.com/schedule');
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     return response.text();
 }
 
-function parseEvents(html) {
+function parseEvents(html: string) {
     const root = parse(html);
     const events = [];
-    const sessions = root.querySelectorAll('.sessioncollectionitem');
+    const eventContainers = root.querySelectorAll('.event-item-content');
 
-    sessions.forEach(session => {
-        const card = session.querySelector('.itemcard');
-        if (card && !card.classList.toString().includes('w-condition-invisible')) {
-            const titleElement = session.querySelector('.sessionname');
-            const dateElement = session.querySelector('.iso-date');
-            const locationElement = session.querySelector('.rowitem_border .startdate');
-            const speakersElement = session.querySelector('.text-block-9');
+    eventContainers.forEach(container => {
+        const title = container.querySelector('.headeritem')?.text.trim() || '';
+        const date = container.querySelector('.div-block-43')?.text || '';
 
-            const title = titleElement ? titleElement.text.trim() : '';
-            const isoDate = dateElement ? dateElement.text.trim() : '';
-            const date = isoDate ? new Date(isoDate) : null;
-            const location = locationElement ? locationElement.text.trim() : '';
-            const speakers = speakersElement && !speakersElement.classList.toString().includes('w-dyn-bind-empty')
-                ? speakersElement.text.trim()
-                : '';
+        // Extract location - looks for "Captain Ethereum Stage" or similar
+        const location = container.querySelector('.rowitem_border')?.text.trim() || '';
 
-            events.push({
-                title,
-                date: date ? date.toLocaleString('en-US', {
-                    timeZone: 'America/Denver',
-                    dateStyle: 'full',
-                    timeStyle: 'short'
-                }) : '',
-                location,
-                speakers
-            });
-        }
+        // Extract speakers
+        const speakers = container.querySelectorAll('.speaker-name')
+            .map(speaker => speaker.text.trim())
+            .filter(name => name)
+            .join(', ');
+
+        events.push({title, date, location, speakers});
     });
 
     return events;
 }
 
-function getTotalPages(root) {
-    const pageCount = root.querySelector('.w-page-count');
-    if (pageCount) {
-        const text = pageCount.text.trim();
-        const match = text.match(/\d+\s*\/\s*(\d+)/);
-        return match ? parseInt(match[1]) : 1;
-    }
-    return 1;
-}
-
 async function getCompleteSchedule() {
     try {
-        const firstPageHtml = await fetchPage(1);
-        const firstPageRoot = parse(firstPageHtml);
-        const totalPages = getTotalPages(firstPageRoot);
-
-        // Batch requests in groups of 3
-        const batchSize = 3;
-        const allEvents = [];
-
-        // Process first page
-        allEvents.push(...parseEvents(firstPageHtml));
-
-        // Process remaining pages in batches
-        for (let i = 2; i <= totalPages; i += batchSize) {
-            const batch = Array.from(
-                { length: Math.min(batchSize, totalPages - i + 1) },
-                (_, index) => fetchPage(i + index)
-            );
-
-            const pages = await Promise.all(batch);
-            pages.forEach(html => {
-                allEvents.push(...parseEvents(html));
-            });
-        }
-
-        return allEvents;
+        const html = await fetchSchedule();
+        return parseEvents(html);
     } catch (error) {
         console.error('Error fetching or parsing schedule:', error);
         return [];
     }
 }
 
-// New function to format schedule as string
 async function getScheduleAsString() {
     const schedule = await getCompleteSchedule();
 
@@ -143,14 +64,21 @@ async function getScheduleAsString() {
         if (event.speakers) {
             output += `Speakers: ${event.speakers}\n`;
         }
-        output += `\n\n`;
+        output += `\n`;
     });
 
     return output;
 }
 
-const eventsCache = new CachingService<string>('Events');
-
 export const eventsProvider: Provider = {
-    get: () => eventsCache.getWithCache(getScheduleAsString)
+    get: async () => {
+        const tracker = new PerformanceTracker();
+
+        const cachingService = new CachingService<string>('Events', 5 * 60 * 1000);
+        return cachingService.getWithCache(async () => {
+            const schedule = await getScheduleAsString();
+            tracker.logExecution('Events');
+            return schedule;
+        });
+    }
 };

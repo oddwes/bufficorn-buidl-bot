@@ -5,7 +5,7 @@ export const character: Character = {
     username: "unicorn",
     plugins: [],
     clients: [],
-    modelProvider: ModelProviderName.OPENAI,
+    modelProvider: ModelProviderName.ANTHROPIC,
     settings: {
         secrets: {},
         voice: {
