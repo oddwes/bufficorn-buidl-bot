@@ -24,13 +24,17 @@ async function getFaqContent() {
             }
         });
         output += '===========================\n';
+
+        if (process.env.DEBUG) {
+            console.log(output);
+        }
         return output;
     } catch (error) {
         return `Error fetching content: ${error.message}`;
     }
 }
 
-const faqCache = new CachingService<string>('FAQ');
+const faqCache = new CachingService<string>('Account Creation FAQ');
 
 export const accountCreationFaqProvider: Provider = {
     get: () => faqCache.getWithCache(getFaqContent)

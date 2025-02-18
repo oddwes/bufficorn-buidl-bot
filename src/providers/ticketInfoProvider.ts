@@ -42,8 +42,12 @@ async function getTicketInfo() {
                 .filter(Boolean);
 
             output += `${type} - ${price}${subtitle ? ` (${subtitle})` : ''}\n`;
-            output += `Features: ${features.join(' | ')}\n\n`;
+            output += `Features: ${features.join(' | ')}\n`;
         });
+
+        if (process.env.DEBUG) {
+            console.log(output);
+        }
 
         return output;
 

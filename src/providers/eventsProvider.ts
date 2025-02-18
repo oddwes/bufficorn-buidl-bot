@@ -2,7 +2,6 @@ import { Provider } from "@elizaos/core";
 import fetch from "node-fetch";
 import { parse } from 'node-html-parser';
 import { CachingService } from "../services/cachingService.ts";
-import { PerformanceTracker } from "../services/performanceTracker.ts";
 
 async function fetchSchedule() {
     const response = await fetch('https://www.ethdenver.com/schedule');
@@ -55,7 +54,7 @@ async function getScheduleAsString() {
     // Create the output string
     let output = `ETHDenver 2025 Schedule\n`;
     output += `Total Events: ${schedule.length}\n`;
-    output += '\n\n';
+    output += '\n';
 
     schedule.forEach(event => {
         output += `Event: ${event.title}\n`;
@@ -64,21 +63,17 @@ async function getScheduleAsString() {
         if (event.speakers) {
             output += `Speakers: ${event.speakers}\n`;
         }
-        output += `\n`;
     });
+
+    if (process.env.DEBUG) {
+        console.log(output);
+    }
 
     return output;
 }
 
-export const eventsProvider: Provider = {
-    get: async () => {
-        const tracker = new PerformanceTracker();
+const eventsCache = new CachingService<string>('Events');
 
-        const cachingService = new CachingService<string>('Events', 5 * 60 * 1000);
-        return cachingService.getWithCache(async () => {
-            const schedule = await getScheduleAsString();
-            tracker.logExecution('Events');
-            return schedule;
-        });
-    }
+export const eventsProvider: Provider = {
+    get: async () => eventsCache.getWithCache(getScheduleAsString)
 };

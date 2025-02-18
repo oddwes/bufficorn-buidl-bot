@@ -1,5 +1,4 @@
 import { Provider } from "@elizaos/core";
-import { PerformanceTracker } from "../services/performanceTracker.ts";
 import fetch from 'node-fetch';
 import { parse } from 'node-html-parser';
 import { CachingService } from "../services/cachingService.ts";
@@ -105,27 +104,26 @@ function formatPageData(pageData) {
          (pageData.faqs.length ? `\nFAQs:\n${formatFaqs(pageData.faqs)}` : '');
 }
 
-export const conventionInfoProvider: Provider = {
-  get: async () => {
-      const tracker = new PerformanceTracker();
-      const cache = new CachingService<string>('Convention Info', 5 * 60 * 1000);
+async function getConventionInfo() {
+  const urls = await getMenuUrls();
+  const results = await Promise.all(
+    urls.map(async (url) => {
+      const pageData = await parsePage(url);
+      return pageData ? formatPageData(pageData) : '';
+    })
+  );
+  const allContent = results
+    .filter(content => content)
+    .join('\n' + '-'.repeat(80) + '\n\n');
 
-      return cache.getWithCache(async () => {
-          const urls = await getMenuUrls();
-
-          const results = await Promise.all(
-              urls.map(async (url) => {
-                  const pageData = await parsePage(url);
-                  return pageData ? formatPageData(pageData) : '';
-              })
-          );
-
-          const allContent = results
-              .filter(content => content)
-              .join('\n' + '-'.repeat(80) + '\n\n');
-
-          tracker.logExecution('Convention Info');
-          return allContent;
-      });
+  if (process.env.DEBUG) {
+    console.log(allContent);
   }
+  return allContent;
+}
+
+const conventionInfoCache = new CachingService<string>('Convention Info');
+
+export const conventionInfoProvider: Provider = {
+  get: async () => conventionInfoCache.getWithCache(getConventionInfo)
 };

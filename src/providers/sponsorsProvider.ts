@@ -1,6 +1,7 @@
 import { Provider } from "@elizaos/core";
 import { JSDOM } from "jsdom";
 import fetch from "node-fetch";
+import { CachingService } from "../services/cachingService.ts";
 
 async function parseETHDenverSponsors() {
     try {
@@ -63,6 +64,10 @@ async function parseETHDenverSponsors() {
         // Clean up JSDOM resources
         dom.window.close();
 
+        if (process.env.DEBUG) {
+            console.log(output);
+        }
+
         return output;
     } catch (error) {
         console.error('Error parsing sponsors:', error);
@@ -70,17 +75,9 @@ async function parseETHDenverSponsors() {
     }
 }
 
+const sponsorsCache = new CachingService<string>('Sponsors');
+
 export const sponsorsProvider: Provider = {
-    get: async () => {
-        const startTime = performance.now();
-
-        const result = await parseETHDenverSponsors();
-
-        const endTime = performance.now();
-        const executionTime = (endTime - startTime) / 1000; // Convert to seconds
-        console.log(`Providers fetched in ${executionTime.toFixed(2)} seconds`);
-
-        return result;
-    },
+    get: async () => sponsorsCache.getWithCache(parseETHDenverSponsors)
 };
 
