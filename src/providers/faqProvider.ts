@@ -44,10 +44,6 @@ async function getFaqContent() {
         const response = await fetchWithRetry(exportUrl);
         const content = await response.text();
 
-        if (process.env.DEBUG) {
-            console.log(content);
-        }
-
         return content;
     } catch (error) {
         return `Error fetching content: ${error.message}`;

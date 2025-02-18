@@ -116,9 +116,6 @@ async function getConventionInfo() {
     .filter(content => content)
     .join('\n' + '-'.repeat(80) + '\n\n');
 
-  if (process.env.DEBUG) {
-    console.log(allContent);
-  }
   return allContent;
 }
 

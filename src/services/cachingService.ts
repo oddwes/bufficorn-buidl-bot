@@ -27,6 +27,9 @@ export class CachingService<T> {
           const endTime = performance.now();
           console.log(`${this.name} fetched from source in ${((endTime - startTime)/1000).toFixed(2)} seconds`);
 
+          if (process.env.DEBUG) {
+            console.log(result);
+          }
           return result;
       } catch (error) {
           console.error(`Error fetching ${this.name}:`, error);

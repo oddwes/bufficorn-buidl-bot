@@ -35,10 +35,6 @@ async function getBoothContent() {
             output.push(`- ${booth.companyName}, ${booth.level}, ${booth.boothNumber}`);
         });
 
-        if (process.env.DEBUG) {
-            console.log(output.join('\n'));
-        }
-
         return output.join('\n');
     } catch (error) {
         return `Error fetching booth data: ${error.message}`;

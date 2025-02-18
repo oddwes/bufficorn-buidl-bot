@@ -45,10 +45,6 @@ async function getTicketInfo() {
             output += `Features: ${features.join(' | ')}\n`;
         });
 
-        if (process.env.DEBUG) {
-            console.log(output);
-        }
-
         return output;
 
     } catch (error) {

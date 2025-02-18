@@ -25,9 +25,6 @@ async function getFaqContent() {
         });
         output += '===========================\n';
 
-        if (process.env.DEBUG) {
-            console.log(output);
-        }
         return output;
     } catch (error) {
         return `Error fetching content: ${error.message}`;

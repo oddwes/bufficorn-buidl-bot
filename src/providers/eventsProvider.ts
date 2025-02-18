@@ -65,10 +65,6 @@ async function getScheduleAsString() {
         }
     });
 
-    if (process.env.DEBUG) {
-        console.log(output);
-    }
-
     return output;
 }
 

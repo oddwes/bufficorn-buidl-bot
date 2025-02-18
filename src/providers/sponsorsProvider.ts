@@ -64,10 +64,6 @@ async function parseETHDenverSponsors() {
         // Clean up JSDOM resources
         dom.window.close();
 
-        if (process.env.DEBUG) {
-            console.log(output);
-        }
-
         return output;
     } catch (error) {
         console.error('Error parsing sponsors:', error);
