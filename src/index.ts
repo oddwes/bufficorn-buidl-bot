@@ -30,6 +30,7 @@ import { accountCreationFaqProvider } from "./providers/accountCreationFaqProvid
 import { ticketInfoProvider } from "./providers/ticketInfoProvider.ts";
 import { conventionInfoProvider } from "./providers/conventionInfoProvider.ts";
 import { boothProvider } from "./providers/boothProviders.ts";
+import { timeProvider } from "./providers/timeProvider.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,7 +52,7 @@ export function createAgent(
   elizaLogger.success(
     elizaLogger.successesTitle,
     "Creating runtime for character",
-    character.name,
+    character.name
   );
 
   nodePlugin ??= createNodePlugin();
@@ -64,6 +65,7 @@ export function createAgent(
     character,
     plugins: [].filter(Boolean),
     providers: [
+      timeProvider,
       venueProvider,
       eventsProvider,
       sponsorsProvider,
@@ -71,7 +73,7 @@ export function createAgent(
       accountCreationFaqProvider,
       ticketInfoProvider,
       conventionInfoProvider,
-      boothProvider
+      boothProvider,
     ],
     actions: [noneAction],
     services: [],
@@ -112,7 +114,7 @@ async function startAgent(character: Character, directClient: DirectClient) {
   } catch (error) {
     elizaLogger.error(
       `Error starting agent for character ${character.name}:`,
-      error,
+      error
     );
     console.error(error);
     throw error;
@@ -177,7 +179,7 @@ const startAgents = async () => {
   }
 
   const isDaemonProcess = process.env.DAEMON_PROCESS === "true";
-  if(!isDaemonProcess) {
+  if (!isDaemonProcess) {
     elizaLogger.log("Chat started. Type 'exit' to quit.");
     const chat = startChat(characters);
     chat();

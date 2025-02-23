@@ -16,6 +16,9 @@ export class CachingService<T> {
           if (this.cache && this.expiry && Date.now() < this.expiry) {
               const endTime = performance.now();
               console.log(`${this.name} fetched from cache in ${((endTime - startTime)/1000).toFixed(2)} seconds`);
+              if (process.env.DEBUG) {
+                console.log(this.cache);
+              }
               return this.cache;
           }
 

@@ -10,12 +10,6 @@ async function getMenuUrls() {
     const root = parse(html);
     const urls = new Set<string>(); // Use Set to automatically deduplicate
 
-    // Get BUIDL URLs - just use /buidl path
-    root.querySelectorAll('a[href^="/buidl"]').forEach(el => {
-      const url = 'https://www.ethdenver.com' + el.getAttribute('href');
-      urls.add(url);
-    });
-
     // Get Festival URLs
     root.querySelectorAll('a[href^="/activations"]').forEach(el => {
       const text = el.querySelector('.nav-link.menu_purple')?.text.trim();
@@ -53,13 +47,27 @@ async function parsePage(url: string) {
       url,
       title: decodeHtml(content.match(/<title>(.*?)<\/title>/)?.[1] || ''),
       description: decodeHtml(content.match(/<section class="openhours-activations">.*?<p.*?>(.*?)<\/p>/s)?.[1]?.trim() || ''),
-      location: decodeHtml(content.match(/<strong>.*?Location:<\/strong><br\/>(.*?)<\/p>/)?.[1] || ''),
+      location: '',  // Will be set below
       schedule: {
         opens: '',
         closes: ''
       },
       faqs: []
     };
+
+    // Updated location parsing to skip <strong> content
+    const locationSection = root.querySelector('section.activation_location');
+    if (locationSection) {
+      const paragraph = locationSection.querySelector('.plaintext p');
+      if (paragraph) {
+        // Remove the <strong> element and get remaining text
+        const strongElement = paragraph.querySelector('strong');
+        if (strongElement) {
+          strongElement.remove();
+        }
+        pageData.location = decodeHtml(paragraph.textContent?.trim() || '');
+      }
+    }
 
     const openSection = root.querySelector('section.section_activity_time:has(div:contains("Open:"))');
     const closeSection = root.querySelector('section.section_activity_time:has(div:contains("Closes:"))');
@@ -75,16 +83,42 @@ async function parsePage(url: string) {
     }
 
     const faqMatches = (content.match(/<div class="text-size-medium-3 faq-header">(.*?)<\/div>/g) || []) as string[];
-    const faqAnswerMatches = (content.match(/<p class="paragraph">(.*?)<\/p>/g) || []) as string[];
 
-    faqMatches.forEach((q, i) => {
-      const question = decodeHtml((q as string).replace(/<div class="text-size-medium-3 faq-header">/, '')
-                       .replace(/<\/div>/, '').trim());
-      const answer = decodeHtml(faqAnswerMatches[i] ?
-        faqAnswerMatches[i].replace(/<p class="paragraph">/, '')
-                          .replace(/<\/p>/, '').trim() : '');
-      pageData.faqs.push({ question, answer });
+    // Updated answer parsing to handle both formats
+    const faqSections = root.querySelectorAll('.home_12_frequently-asked-questions_answer');
+    const faqAnswers = faqSections.map(section => {
+      // Try first format (direct paragraph)
+      let answer = section.querySelector('p.paragraph')?.textContent;
+
+      // If not found, try second format (richtext with nested paragraphs)
+      if (!answer) {
+        const richTextDiv = section.querySelector('.w-richtext');
+        if (richTextDiv) {
+          // Combine all paragraphs and preserve links
+          answer = Array.from(richTextDiv.querySelectorAll('p'))
+            .map(p => {
+              // Replace links with markdown format
+              const links = p.querySelectorAll('a');
+              let text = p.textContent || '';
+              links.forEach(link => {
+                const href = link.getAttribute('href');
+                const linkText = link.textContent;
+                text = text.replace(linkText!, `[${linkText}](${href})`);
+              });
+              return text;
+            })
+            .join('\n\n');
+        }
+      }
+
+      return decodeHtml(answer || '');
     });
+
+    pageData.faqs = faqMatches.map((q, i) => ({
+      question: decodeHtml(q.replace(/<div class="text-size-medium-3 faq-header">/, '')
+                           .replace(/<\/div>/, '').trim()),
+      answer: faqAnswers[i] || ''
+    }));
 
     return pageData;
   } catch (error) {
@@ -94,14 +128,37 @@ async function parsePage(url: string) {
 }
 
 function formatPageData(pageData) {
-  const formatFaqs = faqs => faqs.map(faq => `Q: ${faq.question}\nA: ${faq.answer}`).join('\n');
+  const formatFaqs = faqs => {
+    if (!faqs.length) return '';
 
-  return `${pageData.title}\n${pageData.url}\n` +
-         `${pageData.description}\n` +
-         `Location: ${pageData.location}\n` +
-         `Open: ${pageData.schedule.opens}\n` +
-         `Close: ${pageData.schedule.closes}\n` +
-         (pageData.faqs.length ? `\nFAQs:\n${formatFaqs(pageData.faqs)}` : '');
+    let faqOutput = '\n## Frequently Asked Questions\n\n';
+    let currentCategory = '';
+
+    faqs.forEach(faq => {
+      // Check if question starts with a category (e.g., "Application & Eligibility:")
+      const categoryMatch = faq.question.match(/^([^:]+):/);
+      if (categoryMatch) {
+        const newCategory = categoryMatch[1].trim();
+        if (newCategory !== currentCategory) {
+          currentCategory = newCategory;
+          faqOutput += `### ${currentCategory}\n\n`;
+        }
+        // Remove category from question
+        faq.question = faq.question.replace(/^[^:]+:\s*/, '');
+      }
+
+      faqOutput += `**${faq.question}**\n${faq.answer}\n\n`;
+    });
+
+    return faqOutput;
+  };
+
+  return `## ${pageData.title}\n${pageData.url}\n\n` +
+         `${pageData.description}\n\n` +
+         `Location: ${pageData.location}\n\n` +
+         `Open: ${pageData.schedule.opens}\n\n` +
+         `Close: ${pageData.schedule.closes}\n\n` +
+         formatFaqs(pageData.faqs);
 }
 
 async function getConventionInfo() {
@@ -114,7 +171,7 @@ async function getConventionInfo() {
   );
   const allContent = results
     .filter(content => content)
-    .join('\n' + '-'.repeat(80) + '\n\n');
+    .join('\n');
 
   return allContent;
 }

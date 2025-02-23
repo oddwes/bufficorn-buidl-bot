@@ -18,7 +18,11 @@ function parseEvents(html: string) {
 
     eventContainers.forEach(container => {
         const title = container.querySelector('.headeritem')?.text.trim() || '';
-        const date = container.querySelector('.div-block-43')?.text || '';
+
+        // Try to get ISO date first, fall back to parsing date and time separately
+        const dateText = container.querySelector('.text-block-40')?.text.trim() || '';
+        const timeText = container.querySelector('.text-block-41')?.text.trim() || '';
+        const date = dateText && timeText ? `${dateText} ${timeText}` : '';
 
         // Extract location - looks for "Captain Ethereum Stage" or similar
         const location = container.querySelector('.rowitem_border')?.text.trim() || '';
@@ -52,17 +56,16 @@ async function getScheduleAsString() {
     schedule.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     // Create the output string
-    let output = `ETHDenver 2025 Schedule\n`;
-    output += `Total Events: ${schedule.length}\n`;
-    output += '\n';
+    let output = `## ETHDenver 2025 Schedule (Total Events: ${schedule.length})\n`;
 
     schedule.forEach(event => {
-        output += `Event: ${event.title}\n`;
-        output += `Time: ${event.date}\n`;
-        output += `Stage: ${event.location}\n`;
+        output += `${event.title}\n`;
+        output += `- Time: ${event.date}\n`;
+        output += `- Stage: ${event.location}\n`;
         if (event.speakers) {
-            output += `Speakers: ${event.speakers}\n`;
+            output += `- Speakers: ${event.speakers}\n`;
         }
+        output += `\n`;
     });
 
     return output;
