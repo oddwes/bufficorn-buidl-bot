@@ -21,16 +21,9 @@ import {
   parseArguments,
 } from "./config/index.ts";
 import { initializeDatabase } from "./database/index.ts";
-import { sponsorsProvider } from "./providers/sponsorsProvider.ts";
-import { eventsProvider } from "./providers/eventsProvider.ts";
 import { venueProvider } from "./providers/venueProvider.ts";
-import { faqProvider } from "./providers/faqProvider.ts";
-import { noneAction } from "./actions/none.ts";
-import { accountCreationFaqProvider } from "./providers/accountCreationFaqProvider.ts";
-import { ticketInfoProvider } from "./providers/ticketInfoProvider.ts";
-import { conventionInfoProvider } from "./providers/conventionInfoProvider.ts";
-import { boothProvider } from "./providers/boothProviders.ts";
 import { timeProvider } from "./providers/timeProvider.ts";
+import { getInfoAction } from "./actions/getInfo.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -64,18 +57,8 @@ export function createAgent(
     evaluators: [],
     character,
     plugins: [].filter(Boolean),
-    providers: [
-      timeProvider,
-      venueProvider,
-      eventsProvider,
-      sponsorsProvider,
-      faqProvider,
-      accountCreationFaqProvider,
-      ticketInfoProvider,
-      conventionInfoProvider,
-      boothProvider,
-    ],
-    actions: [noneAction],
+    providers: [timeProvider, venueProvider],
+    actions: [getInfoAction],
     services: [],
     managers: [],
     cacheManager: cache,
