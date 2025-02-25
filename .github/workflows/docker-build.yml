@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Version tag to build (e.g. v1.0.1)'
+        description: "Version tag to build (e.g. v1.0.1)"
         required: true
   workflow_run:
     workflows: ["Auto Tag"]
@@ -30,15 +30,8 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
           echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env
-          echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
-          echo "SCHEDULE_PASSWORD=${{ secrets.SCHEDULE_PASSWORD }}" >> .env
           echo "DAEMON_PROCESS=true" >> .env
-          echo "BOOTH_SPREADSHEET_ID=${{ secrets.BOOTH_SPREADSHEET_ID }}" >> .env
-          echo "BOOTH_SHEET_ID=${{ secrets.BOOTH_SHEET_ID }}" >> .env
-          echo "GOOGLE_SERVICE_ACCOUNT_EMAIL=${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}" >> .env
-          echo "GOOGLE_PRIVATE_KEY=${{ secrets.GOOGLE_PRIVATE_KEY }}" >> .env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

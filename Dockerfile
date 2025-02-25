@@ -18,6 +18,7 @@ WORKDIR /app
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY tsconfig.json ./
+COPY chromaConfig.js ./
 
 # Copy the rest of the application code
 COPY ./src ./src
